@@ -41,11 +41,11 @@
 
   Before update:
 
-  <img width="600" src="./1.png" alt="1">
+  <img width="600" src="./assets/1.png" alt="1">
 
   After update:
 
-  <img width="600" src="./2.png" alt="2">
+  <img width="600" src="./assets/2.png" alt="2">
 
   To update the original variable from the update action inside other func, the func must return the updated value, and the original variable must reasign to the returned value
 
@@ -112,18 +112,18 @@
 
   When the group B variable is use, Go find the second memory block (pointer contain), and sees the pointer to other (first) memory block and read and write to the its underlying data
 
-  <img width="600" src="./3.png" alt="3">
+  <img width="600" src="./assets/3.png" alt="3">
 
   When the group B variable is passed as an argument to other func:
 
   - first, go still does make a copy the variable (Go always make a copy), but it's copying the value stored inside the second memory block where the pointer or the reference is stored, not the underlying data
   - second, the wrapper copy contain the same pointer and pointing to the same underlying data in the first memory block
 
-  <img width="600" src="./4.png" alt="4">
+  <img width="600" src="./assets/4.png" alt="4">
 
   So, when the value updating, Go looks at the copy variable (pointer) in the memory, it sees that it points to the other memory, it updates the value in that block, so it changes the original value
 
-  <img width="600" src="./5.png" alt="5">
+  <img width="600" src="./assets/5.png" alt="5">
 
   So, group A variable is called **Non-Pointer Values**
 
