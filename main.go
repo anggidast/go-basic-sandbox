@@ -1,12 +1,8 @@
-package main // * every project should have at least one file with package main (file with package name will run first)
+package main // * every project should have at least one file with package main (file with package main will run first)
 
-import (
-	"fmt"
-)
+import "fmt" // * fmt is use for format string and print them out to the console
 
-// * fmt is use for format string and print them out tod the console
-
-// * func main is entry point for the application, only one in one file, will run first in file
+// * func main is entry point for the application, only one in a project, will run first in file
 func main() {
 
 	// * print to terminal
@@ -128,7 +124,6 @@ func main() {
 
 	// fmt.Println(sort.SearchStrings(names, "bowser"))
 
-
 	// ? LOOPS
 	// x := 0
 	// for x < 5 { // * while loop like
@@ -157,7 +152,6 @@ func main() {
 	// }
 
 	// fmt.Println(names) // * changing val in a loop does not mutate the original slice
-
 
 	// ? BOOLEANS AND CONDITIONS
 	age := 45
