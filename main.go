@@ -2,23 +2,45 @@ package main // * every project should have at least one file with package main 
 
 import "fmt"
 
-var score = 99.5 // * root level (package scope) to so it accessible inside any file with package name
-
 // * func main is entry point for the application, only one in a project, will run first in file
 func main() {
 
-	// * all var and func inside this func main is coming from greetings.go
+	// ? MAPS
+	// * like object in javascript
+	// * all the key must have the same type in a single map
+	// * and all the value must have the same type in a single map
 
-	sayHello("mario")
-
-	for _, v := range points {
-		fmt.Println(v)
+	// map_name := map[key-data-type]value-data-type
+	menu := map[string]float64{ // * all key data type in menu map is string, and all value in menu map is float
+		"soup":           4.99,
+		"pie":            7.99,
+		"salad":          6.99,
+		"coffee pudding": 3.55,
 	}
 
-	showScore()
+	fmt.Println(menu)
+	fmt.Println(menu["pie"])
 
-	// * variable inside this function is unaccessible at other file
+	// * looping maps
+	for k, v := range menu {
+		fmt.Println(k, "-", v)
+	}
+
+	// * integers as key type
+	phonebook := map[int]string{
+		267584967: "mario",
+		984759373: "luigi",
+		845775485: "peach",
+	}
+
+	fmt.Println(phonebook)
+	fmt.Println(phonebook[267584967])
+
+	// * updating map item
+	phonebook[267584967] = "bowser"
+	fmt.Println(phonebook)
+
+	phonebook[845775485] = "yoshi"
+	fmt.Println(phonebook)
 
 }
-
-// * to run the package (form different file), we also have to run all the file that connect to main.go -> go run main.go greetings.go
