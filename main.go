@@ -1,70 +1,24 @@
-package main // * every project should have at least one file with package main (file with package name will run first)
+package main // * every project should have at least one file with package main (file with package main will run first)
 
-import (
-	"fmt" // * fmt is use for format string and print them out tod the console
-	"strings"
-)
+import "fmt"
 
-// * Basic Functions
-// func sayGreeting(n string) { // * n param only receive string data arg
-// 	fmt.Printf("Good morning %v \n", n)
-// }
+var score = 99.5 // * root level (package scope) to so it accessible inside any file with package name
 
-// func sayBye(n string) {
-// 	fmt.Printf("Goodbye %v \n", n)
-// }
-
-// func cycleNames(n []string, f func(string)) { // * multiple params and function as argument
-// 	for _, v := range n { // * for every n slices elements (v), invoke the function with v as argument
-// 		f(v)
-// 	}
-// }
-
-// func circleArea(r float64) float64 { // * if the func return data, declare the data type before {
-// 	return math.Pi * r * r
-// }
-
-// * Multiple Return Values
-func getInitials(n string) (string, string) { // * the func have 2 params with string data type both
-	s := strings.ToUpper(n)
-	names := strings.Split(s, " ") // * split the string with space as separator
-
-	initials := []string{}
-	for _, v := range names {
-		initials = append(initials, v[:1]) // * push first character at every names elements (v), v[0] is cannot use at string var
-	}
-
-	if len(initials) > 1 {
-		return initials[0], initials[1] // * return 2 value
-	}
-
-	return initials[0], "" // * return 1 value and 1 empty string value
-}
-
-// * func main is entry point for the application, only one in one file, will run first in file
+// * func main is entry point for the application, only one in a project, will run first in file
 func main() {
-	// * Basic Functions
-	// 	sayGreeting("mario")
-	// 	sayGreeting("luigi")
-	// 	sayBye("mario")
 
-	// 	cycleNames([]string{"cloud", "tifa", "barret"}, sayGreeting)
-	// 	cycleNames([]string{"cloud", "tifa", "barret"}, sayBye)
+	// * all var and func inside this func main is coming from greetings.go
 
-	// 	a1 := circleArea(10.5)
-	// 	a2 := circleArea(15)
+	sayHello("mario")
 
-	// 	fmt.Println(a1, a2)
-	// 	fmt.Printf("circle 1 is %0.3f and circle 2 is %0.3f \n", a1, a2)
+	for _, v := range points {
+		fmt.Println(v)
+	}
 
-	// * Multiple Return Values
-	fn1, sn1 := getInitials("tifa lockhart") // * multi variabel store/declaration when it get multiple return
-	fmt.Println(fn1, sn1)
+	showScore()
 
-	fn2, sn2 := getInitials("cloud strife")
-	fmt.Println(fn2, sn2)
-
-	fn3, sn3 := getInitials("barret")
-	fmt.Println(fn3, sn3)
+	// * variable inside this function is unaccessible at other file
 
 }
+
+// * to run the package (form different file), we also have to run all the file that connect to main.go -> go run main.go greetings.go
