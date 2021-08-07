@@ -1,23 +1,29 @@
-// ? CUSTOM DATA TYPE USING STRUCT
-// * struct is another data type in Go, basically is a blueprint which describe a type of data
-// * kind of custom object structure (like class in OOP)
+// ? RECEIVE USER INPUT
 
 package main
 
-import "fmt"
+import (
+	"bufio" // * package for input output
+	"fmt"
+	"os" // * operating system package
+	"strings"
+)
+
+func createBill() bill {
+	reader := bufio.NewReader(os.Stdin) // * NewReader method need the source of information, terminal = standard input (Stdin)
+
+	fmt.Print("Create a new bill name: ")
+	name, _ := reader.ReadString('\n') // * name is variable to receive user input after press enter, _ is actually an error
+	name = strings.TrimSpace(name)     // * remove any white space
+
+	b := newBill(name)
+	fmt.Println("Created the bill - ", b.name)
+
+	return b
+}
 
 func main() {
-	myBill := newBill("mario's bill") // * use the newBill function from bill.go
+	myBill := createBill()
 
-	myBill.format() // * use bill format function
-	// fmt.Println(myBill) // * result: {mario's bill map[] 0}
-
-	myBill.addItem("onion soup", 4.50)
-	myBill.addItem("veg pie", 8.95)
-	myBill.addItem("toffee pudding", 4.95)
-	myBill.addItem("coffee", 3.25)
-
-	myBill.updateTip(10)
-
-	fmt.Println(myBill.format())
+	fmt.Println(myBill)
 }
