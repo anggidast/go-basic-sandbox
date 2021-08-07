@@ -27,7 +27,7 @@ func createBill() bill {
 	name, _ := getInput("Create a new bill name: ", reader)
 
 	b := newBill(name)
-	fmt.Println("Created the bill - ", b.name)
+	fmt.Println("Created the bill -", b.name)
 
 	return b
 }
@@ -50,7 +50,7 @@ func promptOptions(b bill) {
 		}
 		b.addItem(name, p)
 
-		fmt.Println("Item added - ", name, price)
+		fmt.Println("Item added -", name, price)
 		promptOptions(b)
 	case "t":
 		tip, _ := getInput("Enter tip amount ($): ", reader)
@@ -62,12 +62,12 @@ func promptOptions(b bill) {
 		}
 		b.updateTip(t)
 
-		fmt.Println("Tip add - ", tip)
+		fmt.Println("Tip add -", tip)
 		promptOptions(b)
 
 	case "s":
-
-		fmt.Println("you choose to save the bill", b)
+		b.save()
+		fmt.Println("You saved the file -", b.name)
 	default:
 		fmt.Println("invalid option!")
 		promptOptions(b)
