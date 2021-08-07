@@ -6,6 +6,7 @@ import (
 	"bufio" // * package for input output
 	"fmt"
 	"os" // * operating system package
+	"strconv"
 	"strings"
 )
 
@@ -42,14 +43,31 @@ func promptOptions(b bill) {
 		name, _ := getInput("Item name: ", reader)
 		price, _ := getInput("Item price: ", reader)
 
-		fmt.Println(name, price)
+		p, err := strconv.ParseFloat(price, 64) // * parsing float
+		if err != nil {                         // * if parsing error
+			fmt.Println("The price must be a number")
+			promptOptions(b)
+		}
+		b.addItem(name, p)
+
+		fmt.Println("Item added - ", name, price)
+		promptOptions(b)
 	case "t":
 		tip, _ := getInput("Enter tip amount ($): ", reader)
 
-		fmt.Println(tip)
+		t, err := strconv.ParseFloat(tip, 64) // * parsing float
+		if err != nil {                       // * if parsing error
+			fmt.Println("The tip must be a number")
+			promptOptions(b)
+		}
+		b.updateTip(t)
+
+		fmt.Println("Tip add - ", tip)
+		promptOptions(b)
+
 	case "s":
 
-		fmt.Println("you choose s")
+		fmt.Println("you choose to save the bill", b)
 	default:
 		fmt.Println("invalid option!")
 		promptOptions(b)
