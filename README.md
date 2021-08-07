@@ -187,3 +187,25 @@ https://github.com/iamshaunjp/golang-tutorials
   After update:
 
   <img width="600" src="./assets/8.png" alt="8">
+
+## Receiver Function with Pointers
+
+When we want to make function/method struct associated to update the struct value, the receiver function should receive struct pointer.
+
+**RULE OF THUMB, WHENEVER CALLING A METHOD/FUNCTION WHERE UPDATING THE VALUE, THE FUNCTION SHOULD RECEIVE A POINTER**
+
+**STRUCT POINTERS ARE AUTOMATICALLY DEREFERENCE**
+
+```go
+// update tip
+func (b *bill) updateTip(tip float64) {
+	b.tip = tip // * updating struct value doesn't need dereference as long as the receiver function receive the struct pointer
+}
+
+// add an item to the bill
+func (b *bill) addItem(name string, price float64) {
+	b.items[name] = price
+}
+```
+
+**USE POINTER AT EVERY RECEIVER FUNCTION CAN DECREASE MEMORY USAGE, BECAUSE GO WILL ALWAYS COPYING THE ARGUMENT AT EVERY FUNCTION CALL (INVOKE)**
