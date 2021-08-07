@@ -1,80 +1,54 @@
-// ? RECEIVE USER INPUT
-
 package main
 
 import (
-	"bufio" // * package for input output
 	"fmt"
-	"os" // * operating system package
-	"strconv"
-	"strings"
+	"math"
 )
 
-func getInput(prompt string, r *bufio.Reader) (string, error) { // * reusable to show prompt and get input
-	fmt.Print(prompt)
-	input, err := r.ReadString('\n')
-
-	return strings.TrimSpace(input), err
+// shape interface
+type shape interface { // * group types together, base on their methods
+	area() float64
+	circumf() float64
 }
 
-func createBill() bill {
-	reader := bufio.NewReader(os.Stdin) // * NewReader method need the source of information, terminal = standard input (Stdin)
-
-	// fmt.Print("Create a new bill name: ")
-	// name, _ := reader.ReadString('\n') // * name is variable to receive user input after press enter, _ is actually an error
-	// name = strings.TrimSpace(name)     // * remove any white space
-
-	name, _ := getInput("Create a new bill name: ", reader)
-
-	b := newBill(name)
-	fmt.Println("Created the bill -", b.name)
-
-	return b
+type square struct { // * square have area and circumf method, so its interface
+	length float64
+}
+type circle struct { // * circle have area and circumf method, so its interface
+	radius float64
 }
 
-func promptOptions(b bill) {
-	reader := bufio.NewReader(os.Stdin)
+// square methods
+func (s square) area() float64 {
+	return s.length * s.length
+}
+func (s square) circumf() float64 {
+	return s.length * 4
+}
 
-	opt, _ := getInput("Choose option (a - add item, s - save bill, t - add tip): ", reader)
+// circle methods
+func (c circle) area() float64 {
+	return math.Pi * c.radius * c.radius
+}
+func (c circle) circumf() float64 {
+	return 2 * math.Pi * c.radius
+}
 
-	// * SWITCH STATEMENT
-	switch opt {
-	case "a":
-		name, _ := getInput("Item name: ", reader)
-		price, _ := getInput("Item price: ", reader)
-
-		p, err := strconv.ParseFloat(price, 64) // * parsing float
-		if err != nil {                         // * if parsing error
-			fmt.Println("The price must be a number")
-			promptOptions(b)
-		}
-		b.addItem(name, p)
-
-		fmt.Println("Item added -", name, price)
-		promptOptions(b)
-	case "t":
-		tip, _ := getInput("Enter tip amount ($): ", reader)
-
-		t, err := strconv.ParseFloat(tip, 64) // * parsing float
-		if err != nil {                       // * if parsing error
-			fmt.Println("The tip must be a number")
-			promptOptions(b)
-		}
-		b.updateTip(t)
-
-		fmt.Println("Tip add -", tip)
-		promptOptions(b)
-
-	case "s":
-		b.save()
-		fmt.Println("You saved the file -", b.name)
-	default:
-		fmt.Println("invalid option!")
-		promptOptions(b)
-	}
+func printShapeInfo(s shape) { // * shape is interfaces
+	fmt.Printf("area of %T is: %0.2f \n", s, s.area())
+	fmt.Printf("circumference of %T is: %0.2f \n", s, s.circumf())
 }
 
 func main() {
-	myBill := createBill()
-	promptOptions(myBill)
+	shapes := []shape{
+		square{length: 15.2},
+		circle{radius: 7.5},
+		circle{radius: 12.3},
+		square{length: 4.9},
+	}
+
+	for _, v := range shapes {
+		printShapeInfo(v)
+		fmt.Println("---")
+	}
 }
