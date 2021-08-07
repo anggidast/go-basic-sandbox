@@ -1,5 +1,11 @@
 # Go (Golang) Basic Sandbox
 
+**Lesson Resource and Repository:**
+
+https://www.youtube.com/playlist?list=PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM
+
+https://github.com/iamshaunjp/golang-tutorials
+
 **Go is a Pass-by-value language**
 
 - Go makes "copies" of values when passed into functions
