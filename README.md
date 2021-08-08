@@ -209,3 +209,32 @@ func (b *bill) addItem(name string, price float64) {
 ```
 
 **USE POINTER AT EVERY RECEIVER FUNCTION CAN DECREASE MEMORY USAGE, BECAUSE GO WILL ALWAYS COPYING THE ARGUMENT AT EVERY FUNCTION CALL (INVOKE)**
+
+## Using Empty Interface
+
+Empty interface (interface{}) is the top level of any data type.
+
+Because the interface have no any methods declared so all data type is part of empty interface.
+
+So, interface{} is equal to all data type
+
+The advantage of using interface{} is we can declared arrays, slices, functions and maps that contains or receive, return all data type
+
+**Example:**
+
+```go
+anyElementArrayType := [4]interface{}{"string", 5, 3.7, true}
+
+anyElementSliceType := []interface{}{"string", 5, 3.7, true}
+
+func anyParamsType(a interface{}) interface{} {
+	return a
+}
+
+anyMapPropsType := map[interface{}]interface{}{
+  "soup":           4.99,
+  4:            "string",
+  1.3:          "6.99",
+  "coffee pudding": true,
+}
+```

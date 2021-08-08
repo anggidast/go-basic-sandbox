@@ -11,10 +11,10 @@ type shape interface { // * group types together, base on their methods
 	circumf() float64
 }
 
-type square struct { // * square have area and circumf method, so its interface
+type square struct { // * square type have area and circumf method, so its shape interface
 	length float64
 }
-type circle struct { // * circle have area and circumf method, so its interface
+type circle struct { // * circle type have area and circumf method, so its shape interface
 	radius float64
 }
 
