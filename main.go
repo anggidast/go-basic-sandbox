@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 )
@@ -52,3 +53,25 @@ func main() {
 		fmt.Println("---")
 	}
 }
+
+// ? ERROR INTERFACE (HANDLER)
+// * Go has built-in package interface for error handler for representing an errors condition, with the nil value representing no error
+// * import package errors
+// * remember that error is one of data type in Go
+
+func Devide(value int, devider int) (int, error) {
+	if devider == 0 {
+		return 0, errors.New("Devided by zero")
+	} else {
+		return value / devider, nil
+	}
+}
+
+// func main() {
+// 	result, err := Devide(8, 0)
+// 	if err == nil {
+// 		fmt.Println("Result:", result)
+// 	} else {
+// 		fmt.Println("Error", err.Error())
+// 	}
+// }
