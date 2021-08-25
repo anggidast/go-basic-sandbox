@@ -40,19 +40,19 @@ func printShapeInfo(s shape) { // * shape is interfaces
 	fmt.Printf("circumference of %T is: %0.2f \n", s, s.circumf())
 }
 
-func main() {
-	shapes := []shape{
-		square{length: 15.2},
-		circle{radius: 7.5},
-		circle{radius: 12.3},
-		square{length: 4.9},
-	}
+// func main() {
+// 	shapes := []shape{
+// 		square{length: 15.2},
+// 		circle{radius: 7.5},
+// 		circle{radius: 12.3},
+// 		square{length: 4.9},
+// 	}
 
-	for _, v := range shapes {
-		printShapeInfo(v)
-		fmt.Println("---")
-	}
-}
+// 	for _, v := range shapes {
+// 		printShapeInfo(v)
+// 		fmt.Println("---")
+// 	}
+// }
 
 // ? ERROR INTERFACE (HANDLER)
 // * Go has built-in package interface for error handler for representing an errors condition, with the nil value representing no error
