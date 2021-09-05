@@ -18,6 +18,10 @@ func main() {
 		"coffee pudding": 3.55,
 	}
 
+	// * make a new empty map
+	var book map[string]string = make(map[string]string)
+	fmt.Println(book)
+
 	fmt.Println(menu)
 	fmt.Println(menu["pie"])
 
@@ -41,6 +45,13 @@ func main() {
 	fmt.Println(phonebook)
 
 	phonebook[845775485] = "yoshi"
+	fmt.Println(phonebook)
+
+	// * add new map item
+	phonebook[1234567] = "anggi"
+
+	// * delete map item
+	delete(phonebook, 267584967) // will delete properties 267584967 on phonebook map
 	fmt.Println(phonebook)
 
 }
