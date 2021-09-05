@@ -58,10 +58,64 @@ func sockMerchant(n int32, ar []int32) int32 {
 	return result
 }
 
+func hourglassSum(arr [][]int32) int32 {
+	var hourglasses []int32
+	for i := 0; i < len(arr); i++ { // column array
+		for j := 0; j < len(arr[i]); j++ { // row array
+			if i < len(arr)-2 && j < len(arr[i])-2 { // row array limitation
+				var sum int32 = 0           // hourglass sum result
+				for k := j; k <= j+2; k++ { // hourglass first row loop
+					// fmt.Println(arr[i][k], "row1")
+					sum += arr[i][k]
+				}
+				// fmt.Println(arr[i+1][j+1], "middle")
+				sum += arr[i+1][j+1]        // hourglass middle
+				for l := j; l <= j+2; l++ { // hourglass third row loop
+					// fmt.Println(arr[i+2][l], "row2")
+					sum += arr[i+2][l]
+				}
+
+				hourglasses = append(hourglasses, sum)
+			}
+		}
+
+	}
+	// fmt.Println(hourglasses)
+	var result int32 = 0
+	for i := 0; i < len(hourglasses); i++ {
+		if hourglasses[i] > result {
+			result = hourglasses[i]
+		}
+	}
+
+	return result
+}
+
 func main() {
 	// palindromeChecker("kodok")
 	// isPalindrome := palindromeChecker("adba", 0)
 	// fmt.Println(isPalindrome)
 
-	fmt.Println(sockMerchant(20, []int32{4, 5, 5, 5, 6, 6, 4, 1, 4, 4, 3, 6, 6, 3, 6, 1, 4, 5, 5, 5}))
+	// fmt.Println(sockMerchant(20, []int32{4, 5, 5, 5, 6, 6, 4, 1, 4, 4, 3, 6, 6, 3, 6, 1, 4, 5, 5, 5}))
+
+	input := [][]int32{
+		{1, 1, 1, 0, 0, 0},
+		{0, 1, 0, 0, 0, 0},
+		{1, 1, 1, 0, 0, 0},
+		{0, 0, 2, 4, 4, 0},
+		{0, 0, 0, 2, 0, 0},
+		{0, 0, 1, 2, 4, 0},
+	}
+
+	input2 := [][]int32{
+		{-9, -9, -9, 1, 1, 1},
+		{0, -9, 0, 4, 3, 2},
+		{-9, -9, -9, 1, 2, 3},
+		{0, 0, 8, 6, 6, 0},
+		{0, 0, 0, -2, 0, 0},
+		{0, 0, 1, 2, 4, 0},
+	}
+
+	fmt.Println(hourglassSum(input))
+	fmt.Println(hourglassSum(input2))
 }
