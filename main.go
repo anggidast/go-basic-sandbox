@@ -141,7 +141,7 @@ func main() {
 	// 	fmt.Println(names[i])
 	// }
 
-	// for index, val := range names { // * for range, for.. in like loop
+	// for index, val := range names { // * for range, for.. in loop like
 	// 	fmt.Printf("the value at pos %v is %v \n", index, val)
 	// 	val = "new string"
 	// }
@@ -154,32 +154,56 @@ func main() {
 	// fmt.Println(names) // * changing val in a loop does not mutate the original slice
 
 	// ? BOOLEANS AND CONDITIONS
-	age := 45
+	// age := 45
 
-	fmt.Println(age <= 50)
-	fmt.Println(age >= 50)
-	fmt.Println(age == 45)
-	fmt.Println(age != 50)
+	// fmt.Println(age <= 50)
+	// fmt.Println(age >= 50)
+	// fmt.Println(age == 45)
+	// fmt.Println(age != 50)
 
-	if age < 30 {
-		fmt.Println("age is less than 30")
-	} else if age < 40 {
-		fmt.Println("age is less than 40")
+	// if age < 30 {
+	// 	fmt.Println("age is less than 30")
+	// } else if age < 40 {
+	// 	fmt.Println("age is less than 40")
+	// } else {
+	// 	fmt.Println("age is not less than 40")
+	// }
+
+	// names := []string{"mario", "luigi", "yoshi", "peach", "bowser"}
+
+	// for index, val := range names {
+	// 	if index == 1 {
+	// 		fmt.Println("continuing at pos", index)
+	// 		continue // * skip next line and continue the loop (only stop the current loop)
+	// 	}
+	// 	if index > 2 {
+	// 		fmt.Println("breaking at pos", index)
+	// 		break // * stop the whole loop
+	// 	}
+	// 	fmt.Printf("the value at pos %v is %v \n", index, val)
+	// }
+
+	name := "anggi"
+
+	// ? IF WITH SHORT STATEMENT
+	// * short statement can use when some statement needed before the conditional statement check
+	if length := len(name); length > 5 {
+		fmt.Println("name is to long")
 	} else {
-		fmt.Println("age is not less than 40")
+		fmt.Println("name is right")
 	}
 
-	names := []string{"mario", "luigi", "yoshi", "peach", "bowser"}
+	// ? SWITCH EXPRESSION
+	// * switch has short statement too
+	// * switch can writed without variable check
 
-	for index, val := range names {
-		if index == 1 {
-			fmt.Println("continuing at pos", index)
-			continue // * skip next line and continue the loop
-		}
-		if index > 2 {
-			fmt.Println("breaking at pos", index)
-			break // * stop the loop
-		}
-		fmt.Printf("the value at pos %v is %v \n", index, val)
+	length := len(name)
+	switch {
+	case length > 10:
+		fmt.Println("too long")
+	case length > 5:
+		fmt.Println("medium long")
+	default:
+		fmt.Println("name rigth")
 	}
 }
