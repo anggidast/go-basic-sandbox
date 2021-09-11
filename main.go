@@ -83,6 +83,48 @@ func registerUser(name string, blacklist Blacklist) {
 }
 
 // * Recursive Function
+func factorialRecursive(value int) int {
+	if value == 1 {
+		return 1
+	} else {
+		return value * factorialRecursive(value - 1) // recursion is here
+	}
+}
+
+// * Defer Function
+// * the function is schedule to invoke/execute after other function executed (even the other function is error) always executed
+func logging() {
+	fmt.Println("executing function done")
+}
+
+func runApplication() {
+	defer logging() // * put defer function at the first of other function
+	fmt.Println("run application")
+}
+
+// * Panic function
+// * function that use to stop program when error appear
+// * defer function will always be executed even use panic function
+
+// * Recover function
+// * function that use to catch panic data
+// * when use recover, panic process will be stop and the program/function will run continue
+
+func endFunc() {
+	fmt.Println("function end")
+	message := recover()
+	if message != nil {
+		fmt.Println("error happen", message)
+	}
+}
+
+func runFunc(error bool) {
+	defer endFunc()
+	if error {
+		panic("error")
+	}
+	fmt.Println("function run")
+}
 
 // * func main is entry point for the application, only one in one file, will run first in file
 func main() {
@@ -126,13 +168,20 @@ func main() {
 	// sayHelloWithFilter("Anjing", spamFilter)
 
 	// * Anonymous Function
-	blacklist := func(name string) bool {
-		return name == "admin"
-	}
+	// blacklist := func(name string) bool {
+	// 	return name == "admin"
+	// }
 
-	registerUser("admin", blacklist)
-	registerUser("admin", func(name string) bool {
-		return name == "root"
-	})
+	// registerUser("admin", blacklist)
+	// registerUser("admin", func(name string) bool {
+	// 	return name == "root"
+	// })
+
+	// * Recursive
+	// fmt.Println(factorialRecursive(6))
+
+	// * Panic and Recover
+	runFunc(false)
+	fmt.Println("will execute even runFunc error/panic")
 
 }
