@@ -23,7 +23,12 @@ func newBill(name string) bill { // * function with bill data type return value
 // limiting the function only to some struct
 
 // format bill
-func (b *bill) format() string { // * this function is receive the bill struct and can access the struct using b variable (copied)
+
+// under the hood like
+// func format(b *bill) {} // * invoke with format(mybill)
+
+// * or as struct function invoke with myBill.format()
+func (b *bill) format() string { // * this function is receive the bill struct and can access the struct using b variable (copied, if not pass pointer)
 	fs := "Bill breakdown: \n"
 	var total float64 = 0
 
@@ -46,8 +51,8 @@ func (b *bill) format() string { // * this function is receive the bill struct a
 
 // to update struct use pointer
 // * RULE OF THUMB, WHENEVER CALLING A METHOD/FUNCTION WHERE UPDATING THE VALUE, SHOUL PASSING A POINTER
-// * STRUCT POINTERS ARE AUTOMATICALLY DEREFERENCE
 // * USE POINTER AT EVERY RECEIVER FUNCTION CAN DECREASE MEMORY USAGE, BECAUSE GO WILL ALWAYS COPYING THE ARGUMENT AT EVERY FUNCTION CALL (INVOKE)
+// * STRUCT POINTERS ARE AUTOMATICALLY DEREFERENCE
 
 // update tip
 func (b *bill) updateTip(tip float64) {

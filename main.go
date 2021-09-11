@@ -9,6 +9,27 @@ import "fmt"
 func main() {
 	myBill := newBill("mario's bill") // * use the newBill function from bill.go
 
+	// * other way to make struct data/object
+	var b2 bill
+	b2.name = "Anggi"
+	b2.items = map[string]float64{
+		"onion soup": 4.5,
+		"veg pie": 8.95,
+	}
+	b2.tip = 10
+
+
+	b3 := bill{
+		"Dastarina",
+		map[string]float64{
+			"onion soup": 4.5,
+			"veg pie": 8.95,
+		},
+		10,
+	}
+
+	fmt.Println(b2, b3)
+
 	myBill.format() // * use bill format function
 	// fmt.Println(myBill) // * result: {mario's bill map[] 0}
 
